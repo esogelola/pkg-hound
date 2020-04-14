@@ -154,8 +154,7 @@ def get_package(id, check_user=True):
     if packages is None:
         abort(404, "Package id {0} doesn't exist.".format(id))
 
-    if check_user and packages['user_id'] != g.user['id']:
-        abort(403)
+
 
     return packages
 
@@ -170,8 +169,6 @@ def get_package_by_title(title, check_user=True):
     if packages is None:
         abort(404, "Package id {0} doesn't exist.".format(id))
 
-    if check_user and packages['user_id'] != g.user['id']:
-        abort(403)
 
     return packages
 

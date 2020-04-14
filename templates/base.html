@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> PKGHound</title>
+    <title>PKGHound</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
   </head>
   <body>
     <header class="container-fluid">
-      <nav class="navbar navbar-expand-lg container">
+      <nav class="navbar navbar-expand-lg container ">
         <a class="navbar-brand" href="\">
             <svg width="40"height="40"viewBox="0 0 40 40"xmlns="http://www.w3.org/2000/svg">
                 <g fill="none" fill-rule="evenodd">
@@ -19,29 +19,27 @@
                 </g>
             </svg>
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <div class="navbar-collapse collapse justify-content-between">
+
+
+          <div class="navbar-collapse collapse justify-content-between mr-auto" id="myNavbar">
             <form class="form-inline">
                 <input class="form-control mr-sm-2"type="search" placeholder="Search" aria-label="Search"/>
             </form>
             <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                <a class="nav-link" href="#">Deals <span class="sr-only">(current)</span></a>
+                <a class="nav-link sm-hide" href="#">Deals <span class="sr-only">(current)</span></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Jobs</a>
+                <a class="nav-link sm-hide" href="#">Jobs</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Makers</a>
+                <a class="nav-link sm-hide" href="#">Makers</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Radio</a>
+                <a class="nav-link sm-hide" href="#">Radio</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Ship</a>
+                <a class="nav-link sm-hide" href="#">Ship</a>
               </li>
               <div class="dropdown">
                 <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
@@ -52,15 +50,36 @@
                   <a class="dropdown-item" href="#">Action</a>
                   <a class="dropdown-item" href="#">Something else here</a>
                 </div>
-
               </div>
             </ul>
-            <ul class="navbar-nav">
+          </div>
+    <ul class="navbar-nav user-info ">
             {% if g.user %}
-              <li class="nav-item active"><span  class="nav-link">{{ g.user['username'] }}</span></li>
-              <li class="nav-item">
-                <a class="nav-link btn-sm btn-orange"  href="{{ url_for('auth.logout') }}">Log out</a>
+              <li class="nav-item "><a class="nav-link"  href="{{ url_for('package.create') }}">Post</a></li>
+              <li class="nav-item ">
+              <a class="nav-link"  href="#"><span class="circle" style="align-items:center;border-radius:20px;display:inline-flex;font-size:10px;height:20px;justify-content:center;text-transform:uppercase;width:20px" class="circle_5a8d0"><svg width="10" height="10" xmlns="http://www.w3.org/2000/svg"><path d="M6.14 8.16c.157.192.216.53.097.84-.225.6-.674 1-1.167 1-.494 0-.943-.4-1.212-1a.88.88 0 0 1 .116-.84H1.42c-.406 0-.766-.274-.901-.683-.045-.09 0-.272.09-.363l.18-.228A5.382 5.382 0 0 0 1.87 3.614v-.455c0-1.863 1.622-3.363 3.513-3.136 1.622.182 2.793 1.636 2.793 3.273v.318c0 1.182.36 2.318 1.081 3.272l.18.228c.045.09.09.227.045.363a.87.87 0 0 1-.855.682H6.14z" fill="#FFF"></path></svg></span></a>
               </li>
+              
+               <div class="dropdown">
+                <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                  <img class="rounded user-img" style="max-width: 40px; min-height: 40px;" src="https://randomuser.me/api/portraits/men/32.jpg"/>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">MY PROFILE</a>
+                  <a class="dropdown-item" href="#">MAKER PROFILE</a>
+                  <a class="dropdown-item" href="#">MY COLLECTIONS</a>
+                 
+                  <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">SETTINGS</a>
+                    <a class="dropdown-item" href="#">SUBSCRIPTIONS</a>
+                    <a class="dropdown-item" href="#">FOUNDER CLUB</a>
+                    <a class="dropdown-item" href="#">API DASHBOARD</a>
+                   <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="{{ url_for('auth.logout') }}" >LOGOUT</a>
+                </div>
+
+              </div>
             {% else %}
             <li class="nav-item">
                 <a class="nav-link btn-sm btn-white"  href="{{ url_for('auth.login') }}">Login</a>
@@ -70,8 +89,6 @@
             </li>
             {% endif %}
             </ul>
-          </div>
-        </div>
       </nav>
     </header>
     <section class="container" style="margin-top: 40px;">
