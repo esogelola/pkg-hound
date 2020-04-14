@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit "{{ package['title'] }}"{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+<form method="post" >
+
+    <a class="action btn-sm btn-dark" href="{{ url_for('package.updateImages', id=package['id']) }}">Images</a>
+    <label for="link">Link</label>
+    <input name="link" type="url" id="link" value="{{ request.form['link'] or package['link'] }}" required>
+
+    <label for="title">Title</label>
+    <input name="title" id="title" value="{{ request.form['title'] or package['title'] }}" required>
+   
+    <label for="tagline">Tagline</label>
+    <input name="tagline" id="tagline" value="{{ request.form['tagline']  or package['tagline']}}" required>
+    
+    <label for="topics">Topics (ex. reddit,technology)</label>
+    <input name="topics" id="topics" value="{{ request.form['topics'] or package['topics'] }}" required>
+    <label for="description">Description</label>
+
+    <textarea name="description" required>{{ request.form['description'] or package['description'] }}</textarea>
+    <label for="active">This product isn’t available yet</label>
+    <input name="active" id="active" type="checkbox" value="0"
+    {% if request.form['active']  == 0  %} 
+    checked
+    {% elif package['active'] == 0 %}
+    checked 
+    
+    {% endif %}
+    >
+    
+    <input type="submit" value="Save">
+</form>
+<hr>
+
+<form action="{{ url_for('package.delete', id=package['id']) }}" method="post" onclick="return confirm('Are you sure?');">
+<input class="danger" type="submit" value="Delete">
+</form>
+{% endblock %}

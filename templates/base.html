@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> PKGHound</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+  </head>
+  <body>
+    <header class="container-fluid">
+      <nav class="navbar navbar-expand-lg container">
+        <a class="navbar-brand" href="\">
+            <svg width="40"height="40"viewBox="0 0 40 40"xmlns="http://www.w3.org/2000/svg">
+                <g fill="none" fill-rule="evenodd">
+                    <path d="M40 20c0 11.046-8.954 20-20 20S0 31.046 0 20 8.954 0 20 0s20 8.954 20 20" fill="#DA552F"></path>
+                    <path d="M22.667 20H17v-6h5.667a3 3 0 0 1 0 6m0-10H13v20h4v-6h5.667a7 7 0 1 0 0-14" fill="#FFF"></path>
+                </g>
+            </svg>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-collapse collapse justify-content-between">
+            <form class="form-inline">
+                <input class="form-control mr-sm-2"type="search" placeholder="Search" aria-label="Search"/>
+            </form>
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Deals <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Jobs</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Makers</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Radio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Ship</a>
+              </li>
+              <div class="dropdown">
+                <a class="nav-link" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"  aria-haspopup="true" aria-expanded="false">
+                  <span class="ti-more-alt"></span>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+
+              </div>
+            </ul>
+            <ul class="navbar-nav">
+            {% if g.user %}
+              <li class="nav-item active"><span  class="nav-link">{{ g.user['username'] }}</span></li>
+              <li class="nav-item">
+                <a class="nav-link btn-sm btn-orange"  href="{{ url_for('auth.logout') }}">Log out</a>
+              </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link btn-sm btn-white"  href="{{ url_for('auth.login') }}">Login</a>
+            </li>
+            <li class="mx-2 nav-item">
+                <a class="nav-link btn-sm btn-orange" href="{{ url_for('auth.register') }}">SIGN UP</a>
+            </li>
+            {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <section class="container" style="margin-top: 40px;">
+        {% block header %}{% endblock %}
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        {% endfor %} 
+    {% block content %}{% endblock %}
+  
+    </section>
+
+
+<section class="footer">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="{{ url_for('static', filename='main.js') }}"></script>
+</section>

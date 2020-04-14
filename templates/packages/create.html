@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}New Package{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post" enctype=multipart/form-data>
+    <label for="link">Thumbnail</label>
+    <input name="thumbnail" type=file required>
+
+    <label for="link">Gallary</label>
+    <ol class="gallaryList">
+      <li><input class="gall" name="gall_1" type=file ></li> 
+    </ol>
+
+
+    <button id="anotherImage" type="button">+</button>
+   
+    <label for="link">Link</label>
+    <input name="link" type="url" id="link" value="{{ request.form['link'] }}" required>
+
+    <label for="title">Title</label>
+    <input name="title" id="title" value="{{ request.form['title'] }}" required>
+   
+    <label for="tagline">Tagline</label>
+    <input name="tagline" id="tagline" value="{{ request.form['tagline'] }}" required>
+    
+    <label for="topics">Topics (ex. reddit,technology)</label>
+    <input name="topics" id="topics" value="{{ request.form['topics'] }}" required>
+
+    <label for="active">This product isn’t available yet</label>
+    <input name="active" id="active" type="checkbox" value="0">
+
+
+    <input type="submit" value="Save">
+  </form>
+{% endblock %}

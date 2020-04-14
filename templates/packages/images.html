@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Edit "{{ package['title'] }}" Images{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+
+<form method="post"  enctype=multipart/form-data>
+    <label for="link">Thumbnail</label>
+    
+    <div class='row'>
+        <div class="col">
+            <img class="img img-thumbnail" src="{{ url_for('package.package_image', packageName = package['title'], filetype="thumbnail") }}">
+        </div>
+        <div class="col">
+        <input name="thumbnail" type=file>
+        </div> 
+    </div>
+    <hr>
+    <label for="link">Gallary</label>
+    <script>newNum = {{numImages-1}}</script>
+   
+    <ol class="gallaryList">
+    {% for id in range(1,numImages) %}
+     <div class='row'>
+        <div class="col">
+            <li><img class="img img-thumbnail" src="{{ url_for('package.package_image', packageName = package['title'], filetype="gall", id=id) }}"></li>
+        </div>
+        <div class="col">
+              <label>Delete on Save</label>
+              
+              <input type="checkbox" id="subscribeNews" name="delete_gall_{{id}}" value="gall_{{id}}">
+<br>
+              <input class="gall" name="gall_{{id}}"  type=file >
+        </div> 
+    </div>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+    
+    {% endfor %}
+    </ol>
+    </div>
+    
+
+    <button id="anotherImage" type="button">+</button>
+    <br>
+    <input type="submit" value="Save">
+</form>
+<hr>
+
+{% endblock %}

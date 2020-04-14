@@ -1,0 +1,135 @@
+.card {
+    max-width: 100%;
+}
+.card-text {
+    word-wrap: break-word;
+}
+.nav-link.btn-orange{
+    color: #ffffff ;
+    background: #cc4d29;
+    border-color: #cc4d29;
+}
+
+.btn-orange:hover{
+    color: black;
+}
+.btn-sm{
+    font-weight: 600  !important;
+    font-size: 11px !important;
+    text-transform: uppercase  !important;
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif  !important;
+    font-variant-numeric: tabular-nums  !important;
+}
+.btn-white{
+    
+    background: #fff;
+    border-color: #e8e8e8;
+    color: #000;
+    fill: #000;
+}
+header{
+    background: #fff;
+    border-bottom: 1px solid #e8e8e8;
+    height: 66px;
+    position: relative;
+    -webkit-box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+    font-weight: 400;
+    color: #6f6f6f;
+    line-height: 24px;
+}
+
+.nav-link{
+    color: #6f6f6f ;
+    text-decoration: none;
+
+}
+.nav-link:hover{
+    color: black;
+}
+
+.card-body{
+    padding: 0 !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+    padding-top: 1.25rem !important;
+
+}
+.card-text{
+    margin-bottom: 0.3rem !important;
+}
+.card-title{
+    margin-bottom: .25rem !important;
+}
+
+.bt-small{
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    align-items: center;
+    background: #fff;
+    border-color: #e8e8e8;
+
+    padding: 0 4px;
+    vertical-align: top;
+    border-radius: 3px;
+    border: 1px solid transparent;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none!important;
+}
+
+.small-info{
+    color: #6f6f6f;
+    font-size: 11px;
+    margin-top: 50%;
+    align-items: center;
+    padding: 0 4px;
+    vertical-align: top;
+
+}
+
+a.custom-card,
+a.custom-card:hover {
+  color: inherit;
+  text-decoration: none;
+
+}
+.select-card:hover{
+    background-color: #f9f9f9;
+    outline: 0;
+    cursor: pointer;
+}
+.upvote{
+    vertical-align: inherit !important;
+    padding: 0 8px !important;
+    color: black !important;
+    fill: #000;
+    height: 74px;
+    width: 64px;
+    margin-left: 12px;
+    border-color: #e8e8e8 !important;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+
+}
+.upvote:hover{
+    background-color: #f9f9f9 !important;
+}
+.upvote span{
+    font-weight: 600  !important;
+    font-size: 13px !important;
+    text-transform: uppercase  !important;
+}
+
+.first-card{
+    border-radius: .25rem .25rem 0 0 !important;
+}
+.followupCard{
+    border-radius:  0 0 0 0 !important;
+}
+.last-card{
+    border-radius: 0 0 .25rem .25rem !important; 
+}
