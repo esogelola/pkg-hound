@@ -30,7 +30,13 @@
                 </div>
               </div>
               <div class="col text-center" >
-                <a class="btn-sm btn-outline-secondary bt-small upvote pt-4" href="#" ><span class="ti-arrow-up "></span> <span class="d-block">21</span></a>
+                <a class="btn-sm btn-outline-secondary bt-small upvote pt-4" href=
+                {% if g.user %}
+                "{{ url_for('package.vote', user_id=g.user['id'], id=package['id'] )}}"
+                {% else %}
+                "{{url_for('auth.login')}}"
+                {% endif %}
+                 ><span class="ti-arrow-up "></span> <span class="d-block">{{votes[package['id'] ]}}</span></a>
               </div>
             </div>
             </a>

@@ -6,37 +6,54 @@
 
 {% block content %}
 <form method="post" >
-
-    <a class="action btn-sm btn-dark" href="{{ url_for('package.updateImages', id=package['id']) }}">Images</a>
-    <label for="link">Link</label>
-    <input name="link" type="url" id="link" value="{{ request.form['link'] or package['link'] }}" required>
-
-    <label for="title">Title</label>
-    <input name="title" id="title" value="{{ request.form['title'] or package['title'] }}" required>
-   
-    <label for="tagline">Tagline</label>
-    <input name="tagline" id="tagline" value="{{ request.form['tagline']  or package['tagline']}}" required>
+      <div class="row">
+          <div class="col-1">
+          <img class="cust-thumbnail" src="{{ url_for('package.package_image', packageName = package['title'], filetype="thumbnail") }}"/>
+          </div>
+          <div class="col">
+            <h1>Update {{ request.form['title'] or package['title'] }} </h1>
+            <a class="btn-sm btn-orange" href="{{ url_for('package.updateImages', id=package['id']) }}">EDIT IMAGES</a>
+          </div>
+      </div>
+     
+        <hr class="mb-5">
+        <form >
+           
+              <label for="link">Link</label>
+              <br>
+              <input name="link" type="url" id="link" class="form-control" placeholder="Link pointing to business/project website." value="{{ request.form['link'] or package['link'] }}" required>
+              <hr>
+              <h5 class="mt-5">Information</h5>
+              <div class="mt-3 row">
+                <div class="col">
+                    <label for="title">Title</label>
+                    <input name="title" id="title"  class="form-control" placeholder="title of PKG" value="{{ request.form['title'] or package['title'] }}" required>
+                    <label class="mt-2" for="topics">Topics (ex. reddit,technology)</label>
+                    <input name="topics" id="topics" class="form-control mt-1 " placeholder="Comma seperated catagories" value="{{ request.form['topics'] or package['topics'] }}" required>
+                </div>
+                <div class="col">
+                    <label class="" for="tagline">Tagline</label>
+                    <input name="tagline" id="tagline" placeholder="tagline" class="form-control" value="{{ request.form['tagline'] or package['tagline'] }}" required>
+                </div>
+              </div>
+              <label class="mt-2" for="description">Description</label>
+              <textarea name="description" class="form-control" >{{ request.form['description'] or package['description'] }}</textarea>
+              <label for="active">This product isn’t available yet</label>
+              <div class="form-check-inline">
+                <label class="form-check-label" for="active">This product isn’t available yet?  </label>
+                <input  class="mt-2 form-check-input" name="active" id="active" type="checkbox" value="0" 
+                {% if request.form['active']  == 0  %} 
+                checked
+                {% elif package['active'] == 0 %}
+                checked 
+                {% endif %}>
+              </div>
+              <input type="submit" class="btn btn-orange my-3" value="Save">
     
-    <label for="topics">Topics (ex. reddit,technology)</label>
-    <input name="topics" id="topics" value="{{ request.form['topics'] or package['topics'] }}" required>
-    <label for="description">Description</label>
-
-    <textarea name="description" required>{{ request.form['description'] or package['description'] }}</textarea>
-    <label for="active">This product isn’t available yet</label>
-    <input name="active" id="active" type="checkbox" value="0"
-    {% if request.form['active']  == 0  %} 
-    checked
-    {% elif package['active'] == 0 %}
-    checked 
-    
-    {% endif %}
-    >
-    
-    <input type="submit" value="Save">
 </form>
 <hr>
 
 <form action="{{ url_for('package.delete', id=package['id']) }}" method="post" onclick="return confirm('Are you sure?');">
-<input class="danger" type="submit" value="Delete">
+<input class="btn btn-outline-danger" type="submit" value="Delete">
 </form>
 {% endblock %}

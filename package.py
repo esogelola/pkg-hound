@@ -18,8 +18,9 @@ def index():
         ' FROM package p JOIN user u ON p.user_id = u.id'
         ' ORDER BY created DESC'
     ).fetchall()
+    votes = db.execute("SELECT package_id, count(user_id)  FROM vote GROUP BY package_id ").fetchall()
 
-    return render_template('packages/index.html', packages=packages)
+    return render_template('packages/index.html', packages=packages,votes=dict(votes))
 
 @bp.route('/package/<packageName>')
 def showPackage(packageName):
@@ -28,7 +29,8 @@ def showPackage(packageName):
     DIR = os.path.join(current_app.config['UPLOAD_FOLDER'], secure_filename(package[2]))
 
     numImages = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))]) 
-    return render_template('packages/package.html', package=package, numImages = numImages)
+    votes = db.execute("SELECT package_id, count(user_id)  FROM vote GROUP BY package_id ").fetchall()
+    return render_template('packages/package.html', package=package, numImages = numImages,votes=dict(votes))
 
 @bp.route('/static/<packageName>/<filetype>',  defaults={'id' : 1})
 @bp.route('/static/<packageName>/<filetype>/<int:id>')
@@ -304,3 +306,33 @@ def clean_up_package(package_name):
         shutil.rmtree(os.path.join(current_app.config['UPLOAD_FOLDER'], secure_filename(package_name)))
     except OSError as e:
         current_app.logger.error("Error: %s - %s." % (e.filename, e.strerror))
+
+def get_packages():
+    packages = {
+        "Today": "",
+        "Yesterday": "",
+        "Yesterday": "",
+        "PAST": "",
+    }
+
+    return packages
+
+@bp.route('/vote/<int:user_id>/<int:id>')
+def vote(user_id,  id):
+    package = get_package(id)
+    db = get_db()
+    if g.user:
+        isValid = db.execute('SELECT user_id, package_id FROM VOTE WHERE user_id = ? AND package_id = ?', (user_id, id)).fetchone()
+        if(isValid is None):
+            current_app.logger.debug(g.user['username'] + " has not voted on " + package['title'])
+            db.execute('INSERT INTO vote (user_id, package_id) VALUES(?,?) ', (user_id, id))
+            db.commit()
+    return redirect(redirect_url())
+
+
+def redirect_url(default='index'):
+    return request.args.get('next') or \
+           request.referrer or \
+           url_for(default)
+    
+

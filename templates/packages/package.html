@@ -116,7 +116,13 @@
         </div>
   </div>
   <div class="col">
-      <a class="btn btn-orange" style="font: weight 150;"><span class="ti-angle-up"></span> UPVOTE <span>440</span></a>
+      <a class="btn btn-orange" style="font: weight 150;" href= 
+                {% if g.user %}
+                "{{ url_for('package.vote', user_id=g.user['id'], id=package['id'] )}}"
+                {% else %}
+                "{{url_for('auth.login')}}"
+                
+                {% endif %}><span class="ti-angle-up"></span> UPVOTE <span>{{votes[package['id']]}}</span></a>
       <img style="border-radius: 50%;left:-10;" src="https://placehold.co/32x32">
       <img style="border-radius: 50%;" src="https://placehold.co/32x32">
       <img style="border-radius: 50%;" src="https://placehold.co/32x32">
