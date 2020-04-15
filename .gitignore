@@ -14,3 +14,9 @@ build/
 *.egg-info/
 
 .vscode
+
+# exclude everything
+static/packages/*
+
+# exception to the rule
+!static/packages/.gitkeep 
