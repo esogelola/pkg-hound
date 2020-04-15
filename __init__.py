@@ -3,6 +3,7 @@ import os
 from flask import Flask
 from . import (db, auth,package)
 
+
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__ ,instance_relative_config=True)
@@ -12,8 +13,10 @@ def create_app(test_config=None):
         UPLOAD_FOLDER = os.path.join('pkghound', 'static', 'packages'),
         PACKAGES_FOLDER = os.path.join('static','packages'),
         ALLOWED_EXTENSIONS = { 'png', 'jpg', 'jpeg', 'gif'},
+
     )
 
+    
     if test_config is None:
         # load the instance config, if it exists, when not testing
         app.config.from_pyfile('config.py', silent=True)

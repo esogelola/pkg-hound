@@ -5,11 +5,24 @@
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Log In">
-  </form>
+<style>
+body {
+  height: 100%;
+}
+</style>
+<div class="cust-login-page">
+  <form class="form-signin" method="post">
+      <img class="mb-4" src="http://127.0.0.1:5000/static/product-hunt.png" alt="" width="250" height="250">
+      <h1 class="h3 mb-3 font-weight-normal">Login</h1>
+      {% set quotes= ('Hope you did not forget your password!', 'Happy hounding.', 'Is this thing on?', 'Packagaes come delivered.') %}
+      {% set random_quote = quotes|random %}
+      <p>{{random_quote}}</p>
+      <label for="username" class="sr-only">Username</label>
+      <input  id="username" name="username" class="form-control mb-2" placeholder="Username" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2020-2020</p>
+    </form>
+  </div>
 {% endblock %}

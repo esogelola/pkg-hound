@@ -92,7 +92,7 @@
       </nav>
     </header>
     <section class="container" style="margin-top: 40px;">
-        {% block header %}{% endblock %}
+
         {% for message in get_flashed_messages() %}
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             {{ message }}
