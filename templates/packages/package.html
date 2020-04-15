@@ -12,7 +12,7 @@
     <img class="cust-thumbnail" src="{{ url_for('package.package_image', packageName = package['title'], filetype="thumbnail") }}"/>
   </div>
   <div class=" col-lg-10">
-    <h4 class="mb-1"><a style="text-decoration: none; color:inherit;" href="#">{{package['title']}}</a></h4>
+    <h4 class="mb-1"><a style="text-decoration: none; color:inherit;" href="#">{{package['title']}} </a> {% if package['active'] == 0 %}<span style="border-radius: 3px;" class="btn-sm btn-danger" href="#">UNAVAILABLE</span>{% endif %}</h4>
     <p class="mb-0">{{package['tagline']}}</p>
     <ul class="tagline-list">
       {% set tags = package['topics'].split(",")%}
@@ -121,7 +121,7 @@
                 "{{ url_for('package.vote', user_id=g.user['id'], id=package['id'] )}}"
                 {% else %}
                 "{{url_for('auth.login')}}"
-                
+
                 {% endif %}><span class="ti-angle-up"></span> UPVOTE <span>{{votes[package['id']]}}</span></a>
       <img style="border-radius: 50%;left:-10;" src="https://placehold.co/32x32">
       <img style="border-radius: 50%;" src="https://placehold.co/32x32">
@@ -136,7 +136,7 @@
                   <div class="col-md-8">
                       <div class="card-body">
                           <p class="mb-0" style="font-weight: bold;">Website</p>
-                          <p class="long-link" >{{package['link']}}</p>
+                          <p class="long-link  " >{{package['link']}}</p>
                       </div>
                   </div>
               </div>

@@ -5,34 +5,60 @@
 {% endblock %}
 
 {% block content %}
-
+<style>
+.image-thumb:hover {
+    position:relative;
+    top:-25px;
+    left:-35px;
+    width:100% !important;
+    height:auto;
+    display:block;
+    z-index:999;
+}
+</style>
 <form method="post"  enctype=multipart/form-data>
-    <label for="link">Thumbnail</label>
+    <label for="link" style="font-weight: bold;">Thumbnail</label>
     
     <div class='row'>
         <div class="col">
             <img class="img img-thumbnail" src="{{ url_for('package.package_image', packageName = package['title'], filetype="thumbnail") }}">
         </div>
-        <div class="col">
-        <input name="thumbnail" type=file>
+        <div class="col my-auto">
+        <div class="input-group ">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroupFileAddon01">Thumbnail</span>
+                </div>
+                <div class="custom-file">
+                  <input type="file" name="thumbnail" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
+                  <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                </div>
+              </div>
         </div> 
     </div>
     <hr>
-    <label for="link">Gallary</label>
+    <label for="link"  style="font-weight: bold;" >Gallary</label>
     <script>newNum = {{numImages-1}}</script>
    
     <ol class="gallaryList">
     {% for id in range(1,numImages) %}
      <div class='row'>
         <div class="col">
-            <li><img class="img img-thumbnail" src="{{ url_for('package.package_image', packageName = package['title'], filetype="gall", id=id) }}"></li>
+            <li><img class="image-thumb" style="width: 200; height: 200px;" src="{{ url_for('package.package_image', packageName = package['title'], filetype="gall", id=id) }}"></li>
         </div>
-        <div class="col">
-              <label>Delete on Save</label>
+        <div class="col my-auto">
               
+              <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="inputGroupFileAddon01">Gallary #{{id}}</span>
+                    </div>
+                    <div class="custom-file">
+                      <input type=file  class="gall custom-file-input" id="gallFile" aria-describedby="inputGroupFileAddon01" name="gall_{{id}}"  type=file >
+                      <label class="custom-file-label" for="gallFile">Choose file</label>
+                    </div>
+                </div>
+             <label>Delete on Save</label>
               <input type="checkbox" id="subscribeNews" name="delete_gall_{{id}}" value="gall_{{id}}">
-<br>
-              <input class="gall" name="gall_{{id}}"  type=file >
+              
         </div> 
     </div>
     {% if not loop.last %}
@@ -42,12 +68,13 @@
     {% endfor %}
     </ol>
     </div>
-    
-
-    <button id="anotherImage" type="button">+</button>
-    <br>
-    <input type="submit" value="Save">
+    <button style="color:black !important" class="btn btn-sm btn-outline-light" id="anotherImageWithHR" type="button">+ Add Image</button>
+    <hr style="my-3">
+    <div class="mb-3">
+        <input type="submit" class="btn btn-orange " value="Save">
+        <a href="{{ url_for('package.update', id=package['id']) }}" class="btn btn-outline-dark">BACK</a>
+    </div>
 </form>
-<hr>
+
 
 {% endblock %}

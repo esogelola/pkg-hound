@@ -327,6 +327,10 @@ def vote(user_id,  id):
             current_app.logger.debug(g.user['username'] + " has not voted on " + package['title'])
             db.execute('INSERT INTO vote (user_id, package_id) VALUES(?,?) ', (user_id, id))
             db.commit()
+        else:
+            current_app.logger.debug(g.user['username'] + " has not voted on " + package['title'])
+            db.execute('DELETE FROM vote WHERE user_id = ? AND package_id = ? ', (user_id, id))
+            db.commit()
     return redirect(redirect_url())
 
 

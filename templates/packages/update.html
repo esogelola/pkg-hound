@@ -38,9 +38,8 @@
               </div>
               <label class="mt-2" for="description">Description</label>
               <textarea name="description" class="form-control" >{{ request.form['description'] or package['description'] }}</textarea>
-              <label for="active">This product isn’t available yet</label>
-              <div class="form-check-inline">
-                <label class="form-check-label" for="active">This product isn’t available yet?  </label>
+                 <div class="form-check-inline mt-3 ">
+                <label class="form-check-label mr-3" for="active">This product isn’t available yet?  </label>
                 <input  class="mt-2 form-check-input" name="active" id="active" type="checkbox" value="0" 
                 {% if request.form['active']  == 0  %} 
                 checked
@@ -48,7 +47,12 @@
                 checked 
                 {% endif %}>
               </div>
-              <input type="submit" class="btn btn-orange my-3" value="Save">
+              <div class="my-3">
+                  <input type="submit" class="btn btn-orange " value="Save">
+                    <a href="{{ url_for('index')}}" class="btn btn-outline-dark">BACK</a>
+              </div>
+    
+              
     
 </form>
 <hr>

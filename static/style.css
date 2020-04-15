@@ -205,6 +205,8 @@ nav {
   
   .btn-orange:hover {
     color: black;
+    background: #ff3700 !important;
+    border-color: #992505 !important;
   }
   .circle-icon {
     background: #f3f3f3;
