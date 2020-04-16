@@ -8,7 +8,7 @@ I plan on adding more features, mainly a proper user authentication library to h
 
 Currently the project features a CRUD implementation for the packages (products) and a very simple authentication and voting module.
 You can check out my demonstration of this app here:
-[![Watch the video](https://img.youtube.com/vi/lRGVlsxjC8U/maxresdefault.jpg)](https://youtu.be/lRGVlsxjC8U)
+[![Watch the video](https://i.ytimg.com/vi/lRGVlsxjC8U/hqdefault.jpg)](https://youtu.be/lRGVlsxjC8U)
 
 ### Prerequisites
 
