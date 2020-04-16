@@ -50,7 +50,13 @@ $('#gallFile').on('change',function(){
     $(this).next('.custom-file-label').html(fileName);
     console.log(fileName)
 })
-
+$('#thumbnailFile').on('change',function(){
+  //get the file name
+  var fileName = $(this).val();
+  //replace the "Choose a file" label
+  $(this).next('.custom-file-label').html(fileName);
+  console.log(fileName)
+})
 $('body').on('change', 'li #inputGroupFile01', function() {
     var fileName = $(this).val();
     $(this).next('.custom-file-label').html(fileName);
