@@ -30,15 +30,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a simple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
-
+    #initialize database
     db.init_app(app)
-    
+    #Regiser authentication and package blue prints (urls) to this app
     app.register_blueprint(auth.bp)
     app.register_blueprint(package.bp)
-
+    
     app.add_url_rule('/', endpoint='index')
     return app
