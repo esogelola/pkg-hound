@@ -11,17 +11,17 @@
         <div class="col-md-8">
         {% for package in packages %}
           
-          <div class="card  {{ "first-card " if loop.index ==1 else " followupCard" if not loop.last else "last-card"}} select-card pb-3">
-            <a href="{{ url_for('package.showPackage', packageName=package['title'] )}} " class="custom-card">
+          <div class="card  {{ "first-card " if loop.index ==1 else " followupCard" if not loop.last else "last-card"}} custom-card select-card pb-3">
+            <a href="{{ url_for('package.showPackage', packageName=package['title'] )}} " class="">
             <div class="row no-gutters">
-              <div class="col-md p-2">
+              <div class="col-md-2 p-2">
                 <img class="cust-thumbnail" src="{{ url_for('package.package_image', packageName = package['title'], filetype="thumbnail") }}"/>
               </div>
               <div class="col-md-8">
-                <div class="card-body">
+                <div class="card-body pt-2">
                   <h5 class="card-title">{{ package['title'] }}</h5>
                   <p class="card-text">{{ package['tagline'] }}</p>
-                  <a class="btn-sm btn-outline-secondary bt-small" href="#" ><span class="ti-comment"></span> 21</a>
+                  <a class="btn-sm btn-outline-secondary bt-small" href="#" ><span class="ti-comment"></span> 0</a>
                   <a href="#"><span class="small-info">{{ package['topics'].split(",")[0].capitalize()  }}</span></a>
                      {% if g.user['id'] == package['user_id'] %}
                        <a class="btn-sm btn-outline-secondary bt-small" href="{{ url_for('package.update', id=package['id']) }}">Edit</a>
@@ -36,7 +36,13 @@
                 {% else %}
                 "{{url_for('auth.login')}}"
                 {% endif %}
-                 ><span class="ti-arrow-up "></span> <span class="d-block">{{votes[package['id'] ]}}</span></a>
+                 ><span class="ti-arrow-up "></span> <span class="d-block">
+                 {% if votes[package['id']]  %}   
+                    {{ votes[package['id']]  }}
+                          {% else %}
+                           0
+                          {%endif %}
+                 </span></a>
               </div>
             </div>
             </a>

@@ -24,7 +24,7 @@
       <li class="tagline-item"> 
           <div class="dropdown ">
           {%if tags|length > 2%}
-              <a style="color: inherit;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">+3</a>
+              <a style="color: inherit;" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> +{{tags|length  - 2}}</a>
             {% endif%}
               <div class="dropdown-menu" style="min-width: 0px !important; padding:0px important; border: none;" aria-labelledby="dropdownMenuLink">
                   <ul class="tagline-list">
@@ -122,7 +122,11 @@
                 {% else %}
                 "{{url_for('auth.login')}}"
 
-                {% endif %}><span class="ti-angle-up"></span> UPVOTE <span>{{votes[package['id']]}}</span></a>
+                {% endif %}><span class="ti-angle-up"></span> UPVOTE <span>{% if votes[package['id']]  %}   
+                    {{ votes[package['id']]  }}
+                          {% else %}
+                           0
+                          {%endif %}</span></a>
       <img style="border-radius: 50%;left:-10;" src="https://placehold.co/32x32">
       <img style="border-radius: 50%;" src="https://placehold.co/32x32">
       <img style="border-radius: 50%;" src="https://placehold.co/32x32">
